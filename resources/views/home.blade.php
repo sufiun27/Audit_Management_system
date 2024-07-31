@@ -6,6 +6,8 @@
 <div class="card">
     {{-- {{$exporters}} --}}
 
+    <a href="{{route('add_audit_subcategory_view', ['audit_category_id'=> $category])}}" type="button" class="btn btn-primary" style="width: 8rem;" >Add</a>
+
     @php
        // print_r($audit_subcategories);
     @endphp

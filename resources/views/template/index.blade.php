@@ -285,6 +285,14 @@
                   //print_r($categorys);
                  @endphp
 
+                <li class="sidebar-item">
+                  <a href="{{route('add_audit_category')}}" class="sidebar-link"> 
+                    {{-- {{route('style.style')}} --}}
+                    <i class="mdi">A </i>
+                    <span class="hide-menu"> Add </span></a
+                  >
+                </li>
+
                   @foreach ($categorys as $category)
                   <li class="sidebar-item">
                     <a href="{{route('home', ['category' => $category->id])}}" class="sidebar-link"> 

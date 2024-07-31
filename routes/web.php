@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthManager;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuditItemController;
-
+use App\Http\Controllers\AuditSubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +71,29 @@ Route::prefix('employee')->group(function () {
 Route::get('/home/{category}', [AuditCategoryController::class, 'index'])->name('home');
 Route::get('/audit/{audit_subcategory_id}', [AuditItemController::class, 'index'] )->name('audit');
 Route::get('/auditdetails/{id}', [AuditItemController::class, 'auditdetails'] )->name('auditdetails');
+
+
+
+
+Route::get('/add_audit_category', function(){
+    return view('add_audit_category');
+});
+Route::post('/add_audit_category', [AuditCategoryController::class, 'store'] )->name('add_audit_category');
+
+
+
+
+Route::get('/add_audit_subcategory_view/{audit_category_id}', [AuditSubcategoryController::class, 'add_audit_subcategory'])->name('add_audit_subcategory_view');
+Route::post('/add_audit_subcategory', [AuditSubcategoryController::class, 'store'])->name('add_audit_subcategory');
+
+
+Route::get('add_audit/{audit_subcategory_id}', [AuditItemController::class, 'add_audit'])->name('add_audit');
+
+Route::get('add_audit_details', function(){
+    return view('add_audit_details');
+})->name('add_audit_details');
+
+
 
 Route::get('/test', function(){
     return view('test');

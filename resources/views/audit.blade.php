@@ -9,6 +9,8 @@
     @php
         //print_r($audit);
     @endphp
+    <a href="{{route('add_audit', ['audit_subcategory_id'=> $audit_subcategory_id])}}" type="button" class="btn btn-primary" style="width: 8rem;" >Add</a>
+    {{-- <h2>Audit SubCategory id : {{$audit_subcategory_id}}</h2> --}}
     <div class="row">
         
     
