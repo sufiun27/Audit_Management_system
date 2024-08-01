@@ -32,10 +32,9 @@ class AuditItemController extends Controller
        
     }
 
-    public function store_audit_details(Request $request){
-
+    public function store_audit_details(Request $request)
+    {
         $request->validate([
-            '_token' => 'required|string',
             'audit_category_id' => 'required|exists:audit_categories,id',
             'audit_category_name' => 'required|string|max:255',
             'audit_subcategory_id' => 'required|exists:audit_subcategories,id',
@@ -54,62 +53,68 @@ class AuditItemController extends Controller
             'description' => 'nullable|string|max:255',
             'cap_nc_file' => 'nullable|file|mimes:pdf|max:10240', // 10MB limit for PDF
         ]);
-
-         // Check if the files are present in the request and store them
-    $filePaths = [];
-
-    $auditCategory = audit_category::find($request->audit_category_id);
-    $site = $auditCategory->site;
-    $audit_name = $request->audit_name;
-
-    if ($request->hasFile('cap_nc_file')) {
-        $capNcFile = $request->file('cap_nc_file');
-        $capNcFileName = $this->generateFileName($capNcFile, $request, 'cap_nc_file', $site, $audit_name);
-        $filePaths['cap_nc_file'] = $capNcFile->storeAs($this->generateFilePath($request, $site), $capNcFileName, 'public');
-    }
-
-    if ($request->hasFile('response_file')) {
-        $responseFile = $request->file('response_file');
-        $responseFileName = $this->generateFileName($responseFile, $request, 'response_file', $site, $audit_name);
-        $filePaths['response_file'] = $responseFile->storeAs($this->generateFilePath($request, $site), $responseFileName, 'public');
-    }
-
-    if ($request->hasFile('certificate_file')) {
-        $certificateFile = $request->file('certificate_file');
-        $certificateFileName = $this->generateFileName($certificateFile, $request, 'certificate_file', $site, $audit_name);
-        $filePaths['certificate_file'] = $certificateFile->storeAs($this->generateFilePath($request, $site), $certificateFileName, 'public');
-    }
-
-        // vhalidate($request, [
-            
-        // ]);
-    // $auditCategory = audit_category::find($request->audit_category_id);
-    // $site = $auditCategory->site;
-
-    // // Generate the file name
-    // $timestamp = now()->format('Ymd_His'); // Better timestamp format for filenames
-    // $fileExtension = $request->file('cap_nc_file')->getClientOriginalExtension();
-    // $fileName = "{$site}-{$request->audit_category_name}-{$request->audit_subcategory_name}-{$request->audit_name}-{$request->audit_date}-{$timestamp}.{$fileExtension}";
-
-    // // Define the file storage path
-    // $fileStorePath = "{$site}/{$request->audit_category_name}/{$request->audit_subcategory_name}";
-
-    // // Store the file
-    // $path = $request->file('cap_nc_file')->storeAs($fileStorePath, $fileName, 'public');
     
-    // return $path;
-       // return $file_store_path;
-       // $request->cap_nc_file->storeAs('public');
+        // Check if the files are present in the request and store them
+        $filePaths = [
+            'cap_nc_file' => null,
+            'response_file' => null,
+            'certificate_file' => null,
+        ];
+    
+        $auditCategory = audit_category::find($request->audit_category_id);
+        $site = $auditCategory->site;
+        $audit_name = $request->audit_name;
+    
+        if ($request->hasFile('cap_nc_file')) {
+            $capNcFile = $request->file('cap_nc_file');
+            $capNcFileName = $this->generateFileName($capNcFile, $request, 'cap_nc_file', $site, $audit_name);
+            $filePaths['cap_nc_file'] = $capNcFile->storeAs($this->generateFilePath($request, $site), $capNcFileName, 'public');
+        }
+    
+        if ($request->hasFile('response_file')) {
+            $responseFile = $request->file('response_file');
+            $responseFileName = $this->generateFileName($responseFile, $request, 'response_file', $site, $audit_name);
+            $filePaths['response_file'] = $responseFile->storeAs($this->generateFilePath($request, $site), $responseFileName, 'public');
+        }
+    
+        if ($request->hasFile('certificate_file')) {
+            $certificateFile = $request->file('certificate_file');
+            $certificateFileName = $this->generateFileName($certificateFile, $request, 'certificate_file', $site, $audit_name);
+            $filePaths['certificate_file'] = $certificateFile->storeAs($this->generateFilePath($request, $site), $certificateFileName, 'public');
+        }
+    
+        $audit = audit_item::create([
+            'audit_subcategory_id' => $request->audit_subcategory_id,
+            'user_id'=>auth()->user()->id,
+            'audit_name' => $request->audit_name,
+            'audit_date' => $request->audit_date,
+            'hoplun_concern' => $request->hoplun_concern,
+            'document_details' => $request->document_details,
+            'document_link' => $request->document_link,
+            'cap_nc_file' => $filePaths['cap_nc_file'],
+            'response_file' => $filePaths['response_file'],
+            'audit_result' => $request->audit_result,
+            'certificate_file' => $filePaths['certificate_file'],
+            'remainder_date' => $request->remainder_date,
+            'creation' => $request->creation,
+            'findings' => $request->findings,
+            'description' => $request->description,
+        ]);
+        return redirect()->back()->with('success', 'Audit item created successfully.');
     }
-    private function generateFileName($file, $request, $type, $site , $audit_name)
+    
+    private function generateFileName($file, $request, $type, $site, $audit_name)
     {
         $timestamp = now()->format('Ymd_His');
         $fileExtension = $file->getClientOriginalExtension();
         return "{$site}-{$request->audit_category_name}-{$request->audit_subcategory_name}-{$audit_name}-{$type}-{$timestamp}.{$fileExtension}";
     }
-
-    public function generateFilePath($request, $site)
+    
+    private function generateFilePath($request, $site)
     {
         return "{$site}/{$request->audit_category_name}/{$request->audit_subcategory_name}";
     }
+
+    
+    
 }
