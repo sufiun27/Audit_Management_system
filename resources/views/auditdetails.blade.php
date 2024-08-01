@@ -12,10 +12,10 @@
     
         
     <div class="container mt-5">
-      <form  method="POST">
+      <form  method="POST" enctype="multipart/form-data">
         {{-- action="{{ route('audit.update', $audit->id) }}" --}}
           @csrf
-          @method('PUT')
+        
 
           <div class="form-group">
             <label for="auditcategoryId">Audit category : {{$audit->audit_category->name}}</label>
@@ -53,18 +53,22 @@
           </div>
   
           <div class="form-group">
-              <label for="documentLink">Document Link</label>
+              <label for="documentLink">Document Link : <a href="{{$audit->document_link}}" target="_blank">Open</a></label>
               <input type="url" class="form-control" id="documentLink" name="document_link" value="{{ $audit->document_link }}">
           </div>
   
           <div class="form-group">
-              <label for="capNcFile">CAP NC File</label>
-              <input type="text" class="form-control" id="capNcFile" name="cap_nc_file" value="{{ $audit->cap_nc_file }}">
+              <label for="capNcFile">CAP NC File : <a href="{{asset('storage/'.$audit->cap_nc_file)}}" target="_blank">Download</a></label>
+              <input type="file" class="form-control" id="capNcFile" name="cap_nc_file" value="{{ $audit->cap_nc_file }}" accept="application/pdf">
+              <iframe src="{{asset('storage/'.$audit->cap_nc_file)}}" width="50%" height="50%" frameborder="0"></iframe>
           </div>
+
+          
   
           <div class="form-group">
-              <label for="responseFile">Response File</label>
-              <input type="text" class="form-control" id="responseFile" name="response_file" value="{{ $audit->response_file }}">
+              <label for="responseFile">Response File : <a href="{{asset('storage/'.$audit->response_file)}}" target="_blank">Download</a></label>
+              <input type="file" class="form-control" id="responseFile" name="response_file" value="{{ $audit->response_file }}" accept="application/pdf">
+              <iframe src="{{asset('storage/'.$audit->response_file)}}" width="50%" height="50%" frameborder="0"></iframe>
           </div>
   
           <div class="form-group">
@@ -73,8 +77,9 @@
           </div>
   
           <div class="form-group">
-              <label for="certificateFile">Certificate File</label>
-              <input type="text" class="form-control" id="certificateFile" name="certificate_file" value="{{ $audit->certificate_file }}">
+              <label for="certificateFile">Certificate File : <a href="{{asset('storage/'.$audit->certificate_file)}}" target="_blank">Download</a></label>
+              <input type="file" class="form-control" id="certificateFile" name="certificate_file" value="{{ $audit->certificate_file }}" accept="application/pdf">
+              <iframe src="{{asset('storage/'.$audit->certificate_file)}}" width="50%" height="50%" frameborder="0"></iframe>
           </div>
   
           <div class="form-group">
@@ -97,7 +102,7 @@
               <textarea class="form-control" id="description" name="description">{{ $audit->description }}</textarea>
           </div>
   
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-danger">Update</button>
       </form>
   </div>
        
