@@ -93,6 +93,8 @@ Route::get('add_audit_details', function(){
     return view('add_audit_details');
 })->name('add_audit_details');
 
+Route::post('store_audit_details', [AuditItemController::class, 'store_audit_details'])->name('store_audit_details');
+
 
 
 Route::get('/test', function(){

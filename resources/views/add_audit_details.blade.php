@@ -14,17 +14,21 @@
 
         
         <div class="container mt-5">
-          <form  method="POST">
-            {{-- action="{{ route('audit.update', $audit->id) }}" --}}
+          <form action="{{ route('store_audit_details') }}" method="POST" enctype="multipart/form-data">
+            {{-- action="{{ route('store_audit_details') }}" --}}
               @csrf
              
               <div class="form-group">
                 <label for="auditcategoryId">Audit category : {{$audit->audit_category->name}}</label>
+                <input type="text" class="form-control"  name="audit_category_name" value="{{$audit->audit_category->name}}" readonly>
+                <input type="text" class="form-control" id="auditcategoryId" name="audit_category_id" value="{{$audit->audit_category->id}}" readonly>
                 <p></p>
             </div>
       
               <div class="form-group">
                   <label for="auditSubcategoryId">Audit Subcategory : {{$audit->name}}</label>
+                  <input type="text" class="form-control"  name="audit_subcategory_name" value="{{$audit->name}}" readonly>
+                  <input type="text" class="form-control" id="auditSubcategoryId" name="audit_subcategory_id" value="{{$audit->id}}" readonly>
                   <p></p>
               </div>
       
@@ -57,12 +61,12 @@
       
               <div class="form-group">
                   <label for="capNcFile">CAP NC File</label>
-                  <input type="text" class="form-control" id="capNcFile" name="cap_nc_file" old="{{ $audit->cap_nc_file }}">
+                  <input type="file" class="form-control" id="capNcFile" name="cap_nc_file" old="{{ $audit->cap_nc_file }}" accept="application/pdf">
               </div>
       
               <div class="form-group">
                   <label for="responseFile">Response File</label>
-                  <input type="text" class="form-control" id="responseFile" name="response_file" old="{{ $audit->response_file }}">
+                  <input type="file" class="form-control" id="responseFile" name="response_file" old="{{ $audit->response_file }}" accept="application/pdf">
               </div>
       
               <div class="form-group">
@@ -72,7 +76,7 @@
       
               <div class="form-group">
                   <label for="certificateFile">Certificate File</label>
-                  <input type="text" class="form-control" id="certificateFile" name="certificate_file" old="{{ $audit->certificate_file }}">
+                  <input type="file" class="form-control" id="certificateFile" name="certificate_file" old="{{ $audit->certificate_file }}" accept="application/pdf">
               </div>
       
               <div class="form-group">
