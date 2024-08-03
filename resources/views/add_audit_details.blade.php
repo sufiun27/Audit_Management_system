@@ -20,15 +20,15 @@
              
               <div class="form-group">
                 <label for="auditcategoryId">Audit category : {{$audit->audit_category->name}}</label>
-                <input type="text" class="form-control"  name="audit_category_name" value="{{$audit->audit_category->name}}" readonly>
-                <input type="text" class="form-control" id="auditcategoryId" name="audit_category_id" value="{{$audit->audit_category->id}}" readonly>
+                <input type="text" class="form-control"  name="audit_category_name" value="{{$audit->audit_category->name}}" hidden >
+                <input type="text" class="form-control" id="auditcategoryId" name="audit_category_id" value="{{$audit->audit_category->id}}" hidden >
                 <p></p>
             </div>
       
               <div class="form-group">
                   <label for="auditSubcategoryId">Audit Subcategory : {{$audit->name}}</label>
-                  <input type="text" class="form-control"  name="audit_subcategory_name" value="{{$audit->name}}" readonly>
-                  <input type="text" class="form-control" id="auditSubcategoryId" name="audit_subcategory_id" value="{{$audit->id}}" readonly>
+                  <input type="text" class="form-control"  name="audit_subcategory_name" value="{{$audit->name}}" hidden >
+                  <input type="text" class="form-control" id="auditSubcategoryId" name="audit_subcategory_id" value="{{$audit->id}}" hidden >
                   <p></p>
               </div>
       

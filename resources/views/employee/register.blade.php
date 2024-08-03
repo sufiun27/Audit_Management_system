@@ -122,13 +122,16 @@
             </div>
 
             <!-- Site -->
+            @php
+                $sites = App\Models\Site::all();
+            @endphp
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-warning text-white h-100" id="basic-addon2">
                         <i class="mdi mdi-lock fs-4"></i>
                     </span>
                 </div>
-                <input
+                <select
                     name="site"
                     type="text"
                     class="form-control form-control-lg"
@@ -136,7 +139,11 @@
                     aria-label="Site"
                     aria-describedby="basic-addon1"
                     required
-                />
+                >
+                @foreach ($sites as $site)
+                    <option value="{{ $site->name }}">{{ $site->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <!-- DEpartment -->
             <div class="input-group mb-3">

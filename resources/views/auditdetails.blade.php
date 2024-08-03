@@ -12,18 +12,23 @@
     
         
     <div class="container mt-5">
-      <form  method="POST" enctype="multipart/form-data">
+      <form  method="POST" enctype="multipart/form-data" action="{{ route('update_audit_details') }}">
         {{-- action="{{ route('audit.update', $audit->id) }}" --}}
           @csrf
-        
 
+          <input type="text" name="audit_id" value="{{$audit->id}}" hidden>
+        
           <div class="form-group">
             <label for="auditcategoryId">Audit category : {{$audit->audit_category->name}}</label>
+            <input type="text" name="audit_category_name" value="{{$audit->audit_category->name}}" hidden>
+            <input type="text" name="audit_category_id" value="{{$audit->audit_category->id}}" hidden>
             <p></p>
         </div>
   
           <div class="form-group">
               <label for="auditSubcategoryId">Audit Subcategory : {{$audit->audit_subcategory->name}}</label>
+              <input type="text" name="audit_subcategory_name" value="{{$audit->audit_subcategory->name}}" hidden>
+              <input type="text" name="audit_subcategory_id" value="{{$audit->audit_subcategory->id}}" hidden>
               <p></p>
           </div>
   
@@ -104,9 +109,28 @@
   
           <button type="submit" class="btn btn-danger">Update</button>
       </form>
+
+      
   </div>
        
     </div>
+
+    <form action="{{ route('delete_audit_details') }}" method="POST" class="form-inline flex d-flex justify-content-center">
+       @csrf
+        <div class="form-group mb-2">
+          <label for="staticEmail2" class="sr-only">Email</label>
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Type 'Delete' For Delete this.">
+        </div>
+
+        <input type="text" name="audit_subcategory_id" value="{{$audit->audit_subcategory->id}}" hidden>
+        <input type="text" name="audit_id" value="{{$audit->id}}" hidden>
+        
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="inputPassword2" class="sr-only">Password</label>
+          <input type="password" name="password" class="form-control" id="inputPassword2" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+      </form>
 
     
 </div>

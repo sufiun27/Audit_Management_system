@@ -281,7 +281,8 @@
                  </li> --}}
 
                  @php
-                  $categorys = \App\Models\audit_category::all();
+                 $site = auth()->user()->site;
+                  $categorys = \App\Models\audit_category::where('site', $site)->get();
                   //print_r($categorys);
                  @endphp
 

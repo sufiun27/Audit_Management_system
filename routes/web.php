@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuditItemController;
 use App\Http\Controllers\AuditSubcategoryController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,7 @@ Route::post('/authorization', [AuthManager::class, 'authentication'])->name('log
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 
-//Dashboard routes///////////////////////////
-Route::get('/', function () {return view('dashboard');})->name('dashboard')->middleware('auth');
+
 //Invoice Module Routes//////////////////////
 
 
@@ -94,8 +94,11 @@ Route::get('add_audit_details', function(){
 })->name('add_audit_details');
 
 Route::post('store_audit_details', [AuditItemController::class, 'store_audit_details'])->name('store_audit_details');
+Route::post('update_audit_details', [AuditItemController::class, 'update_audit_details'])->name('update_audit_details');
+Route::post('delete_audit_details', [AuditItemController::class, 'delete_audit_details'])->name('delete_audit_details');
 
-
+//Dashboard routes///////////////////////////
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/test', function(){
     return view('test');
