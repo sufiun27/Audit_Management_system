@@ -78,7 +78,7 @@ Route::get('/auditdetails/{id}', [AuditItemController::class, 'auditdetails'] )-
 Route::get('/add_audit_category', function(){
     return view('add_audit_category');
 });
-Route::post('/add_audit_category', [AuditCategoryController::class, 'store'] )->name('add_audit_category');
+Route::post('/add_audit_category', [AuditCategoryController::class, 'store'] )->name('add_audit_category')->middleware('authorization:add_audit_category');
 
 
 

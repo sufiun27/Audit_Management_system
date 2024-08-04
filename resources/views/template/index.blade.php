@@ -286,6 +286,7 @@
                   //print_r($categorys);
                  @endphp
 
+                @can('policy', [App\Models\User::class, 'add_audit_category'])
                 <li class="sidebar-item">
                   <a href="{{route('add_audit_category')}}" class="sidebar-link"> 
                     {{-- {{route('style.style')}} --}}
@@ -293,6 +294,8 @@
                     <span class="hide-menu"> Add </span></a
                   >
                 </li>
+                @endcan
+                
 
                   @foreach ($categorys as $category)
                   <li class="sidebar-item">

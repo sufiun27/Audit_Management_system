@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('designation');
             $table->string('department');
             $table->string('site');
+            $table->foreign('site')->references('name')->on('sites');
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('remarks')->nullable();
