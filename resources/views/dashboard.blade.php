@@ -47,7 +47,7 @@
     </div>
 
     <div class="card-footer">
-        <span>Developed By: Abu Sufiun - abu.sufiun@hoplun.com - BD IT </span>
+        <span>Developed By: Abu Sufiun - abusufiun27@gmail.com </span>
     </div>
 </div>
 

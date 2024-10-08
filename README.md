@@ -9,3 +9,7 @@ This project is built using Laravel and provides a comprehensive solution for ma
 - Dynamically manage categories, subcategories, and audit items.
 - Upload and modify required files for each audit.
 - Receive dashboard notifications for upcoming audits based on expiration dates, highlighting the nearest upcoming audit.
+
+## Dashboard
+- Notify upcomming audits.
+![image](./readme/dashboard.png)

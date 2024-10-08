@@ -14,7 +14,7 @@
       content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Hop Lun</title>
+    <title>Audit Managment</title>
 
 
     <!-- Favicon icon -->
@@ -22,7 +22,7 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="https://www.hoplun.com/storage/app/uploads/public/5ca/4d6/3d4/5ca4d63d4d92b995796472.jpg"
+      href="{{asset('logo/logo.png')}}"
     />
 
 
@@ -95,10 +95,10 @@
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                 <!-- Dark Logo icon -->
                 <img
-                  src="https://www.hoplun.com/storage/app/uploads/public/5ca/4d6/3d4/5ca4d63d4d92b995796472.jpg"
+                  src="{{asset('logo/logo.png')}}"
                   alt="homepage"
                   class="light-logo"
-                  width="25"
+                  width="45"
                 />
               </b>
               <!--End Logo icon -->
@@ -110,7 +110,7 @@
                   alt="homepage"
                   class="light-logo"
                 /> --}}
-                <b><h1>Hop Lun</h1></b>
+                <b><h1>Audit</h1></b>
               </span>
               <!-- Logo icon -->
               <!-- <b class="logo-icon"> -->
