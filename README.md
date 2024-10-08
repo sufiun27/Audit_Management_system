@@ -30,7 +30,7 @@ This project is built using Laravel and provides a comprehensive solution for ma
 ### Audit Item Details
 - Upload multiple files and provide detailed information for each audit item.
   
-![Audit Item Details](./readme/details.png)
+![Audit Item Details](./readme/item_details.png)
 
 ### User Permission Management
 - Add users and manage their roles and permissions.
