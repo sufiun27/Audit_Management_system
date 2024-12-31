@@ -20,7 +20,7 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="https://www.hoplun.com/storage/app/uploads/public/5ca/4d6/3d4/5ca4d63d4d92b995796472.jpg"
+      href="{{asset('logo/logo.png')}}"
     />
     <!-- Custom CSS -->
     <link href="{{asset('matrix/dist/css/style.min.css')}}" rel="stylesheet" />
@@ -63,7 +63,10 @@
           <div id="loginform">
             <div class="text-center pt-3 pb-3">
               <span class="db"
-                ><img src="https://www.hoplun.com/storage/app/uploads/public/5ca/4d6/3d4/5ca4d63d4d92b995796472.jpg" alt="logo"
+                ><img 
+                height="100"
+                width="100"
+                src="{{asset('logo/logo.png')}}" alt="logo"
               /></span>
             </div>
             <!-- ///error print/////////// -->
@@ -165,9 +168,9 @@
 
           <div id="recoverform">
             <div class="text-center">
-              {{-- <span class="text-white"
-                >Use your domain email and password.</span
-              > --}}
+              <span class="text-white"
+                >Use email: abusufiun27@gmail.com ,  and password: 12345678.</span
+              >
             </div>
             <div class="row mt-3">
               <!-- Form -->
